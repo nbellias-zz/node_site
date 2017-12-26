@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Node server Main page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body onload="init()">
+
+  <header>
+    <div class="jumbotron text-center">
+      <h1>Welcome to Node Server Site</h1>
+      <p>This is my first node.js site...</p>
+      <button class="btn btn-primary" id="showmysqltable">Show MySQL Table</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <form action="/nodesite/fileupload" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="file">File to upload</label>
+        <input id="file" type="file" name="filetoupload">
+      </div>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+
+  <div class="container">
+      <form action="/nodesite/sendmessage" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+        </div>
+        <input type="submit" class="btn btn-primary">
+      </form>
+  </div>
+
+  <div class="container" id="mysqltable">
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#showmysqltable").click(function () {
+        $("#mysqltable").load("nodesite/src/mysqltable.html #mysqltable");
+      });
+    });
+  </script>
+</body>
+
+</html>
